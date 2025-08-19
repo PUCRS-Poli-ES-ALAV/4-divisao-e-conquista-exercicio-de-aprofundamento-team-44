@@ -13,6 +13,8 @@ public class App
         int[] vetor = {1,67,4,13};
         int[] vetor2 = {1,2,3,4};
         int[] res = merge(vetor, vetor2);
+
+        System.out.println("Teste do merge():");
         for(int i = 0; i<res.length; i++){
             if(i==res.length-1){
                 System.out.print(res[i]);
@@ -23,6 +25,7 @@ public class App
         System.out.println();
         int[] vetres = {1,67,4,13,8,25,12,2,3,4,44};
         vetres = mergeSort(vetres);
+        System.out.println("Teste do mergeSort():");
         for(int i = 0; i<vetres.length; i++){
             if(i==vetres.length-1){
                 System.out.print(vetres[i]);
@@ -30,6 +33,9 @@ public class App
             else
             System.out.print(vetres[i]+",");
         }
+
+        long[] l = {20847,0,6,2023,6,704,2};
+        System.out.println("\nTeste do maxVal1(): "+maxVal1(l, l.length));
     }
 
     /*
@@ -52,7 +58,7 @@ public class App
      * retorna vet;
      * 
      */
-    public static int[] mergeSort(int[] vet){
+    public static int[] mergeSort(int[] vet){//testar e colocar os tempos na tabela
         if(vet.length <= 1)
         return vet;
 
@@ -109,7 +115,34 @@ public class App
         return merged;
     }
 
-    public static long maxVal1(long A[], int init, int end){
-        return 0;
+    //testar e colocar os tempos na tabela
+    public static long maxVal1(long vet[], int n) { 
+       long max = vet[0];
+       for (int i = 1; i < n; i++) {  
+           if( vet[i] > max ) 
+              max = vet[i];
+       }
+       return max;
     }
+
+    //testar e colocar os tempos na tabela
+    public static long maxVal2(long A[], int init, int end) {  
+       if (end - init <= 1)
+           return max(A[init], A[end]);  
+       else {
+             int m = (init + end)/2;
+             long v1 = maxVal2(A,init,m);   
+             long v2 = maxVal2(A,m+1,end);  
+             return max(v1,v2);
+            }
+    }
+    //sup para o maxVal2
+    public static long max(long a, long b){
+        if(a > b)
+        return a;
+
+        return b;
+    }
+
+    
 }
