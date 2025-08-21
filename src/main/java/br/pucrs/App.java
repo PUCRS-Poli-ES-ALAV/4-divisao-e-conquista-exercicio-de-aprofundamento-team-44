@@ -1,5 +1,6 @@
 package br.pucrs;
 import java.util.ArrayList;
+import java.lang.Math;
 
 /**
  * Hello world!
@@ -144,5 +145,20 @@ public class App
         return b;
     }
 
-    
+    public static long multiply(long x, long y, int n){
+        if(n == 1)
+        return x * y;
+
+        int m = (n+1)/2;
+        long pow = (long)Math.pow(2, m);
+        long a = x / pow;
+        long b = x % pow;
+        long c = y / pow;
+        long d = y % pow;
+        long e = multiply(a, c, n-m); //n-m por ter passado +1
+        long f = multiply(b, d, n-m);
+        long g = multiply(b, c, n-m);
+        long h = multiply(a, d, n-m);
+        return 2^(2*m)*e + 2^m*(g + h) + f;
+    }
 }
